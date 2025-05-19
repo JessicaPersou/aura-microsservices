@@ -1,0 +1,216 @@
+version: '3.8'
+
+services:
+  # Order Microservice
+  order_db:
+    image: postgres:13
+    container_name: order_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: AURA_MS_ORDER
+    ports:
+      - "5432:5432"
+    volumes:
+      - order_pgdata:/var/lib/postgresql/data
+    networks:
+      - aura_network
+
+  order_flyway:
+    image: flyway/flyway:10.12.0
+    container_name: order_flyway
+    depends_on:
+      - order_db
+    command: [
+      "migrate",
+      "-url=jdbc:postgresql://order_db:5432/AURA_MS_ORDER",
+      "-user=postgres",
+      "-password=postgres"
+    ]
+    volumes:
+      - ./aura-ms-order/src/main/resources/db/migration:/flyway/sql
+    networks:
+      - aura_network
+
+  # Product Microservice
+  product_db:
+    image: postgres:13
+    container_name: product_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: aura_ms_product
+    ports:
+      - "5433:5432"
+    volumes:
+      - product_pgdata:/var/lib/postgresql/data
+    networks:
+      - aura_network
+
+  product_flyway:
+    image: flyway/flyway:10.12.0
+    container_name: product_flyway
+    depends_on:
+      - product_db
+    command: [
+      "migrate",
+      "-url=jdbc:postgresql://product_db:5432/aura_ms_product",
+      "-user=postgres",
+      "-password=postgres"
+    ]
+    volumes:
+      - ./aura-ms-product/src/main/resources/db/migration:/flyway/sql
+    networks:
+      - aura_network
+
+  # Client Microservice
+  client_db:
+    image: postgres:13
+    container_name: client_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: aura_ms_client
+    ports:
+      - "5434:5432"
+    volumes:
+      - client_pgdata:/var/lib/postgresql/data
+    networks:
+      - aura_network
+
+  client_flyway:
+    image: flyway/flyway:10.12.0
+    container_name: client_flyway
+    depends_on:
+      - client_db
+    command: [
+      "migrate",
+      "-url=jdbc:postgresql://client_db:5432/aura_ms_client",
+      "-user=postgres",
+      "-password=postgres"
+    ]
+    volumes:
+      - ./aura-ms-client/src/main/resources/db/migration:/flyway/sql
+    networks:
+      - aura_network
+
+  # Stock Microservice
+  stock_db:
+    image: postgres:13
+    container_name: stock_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: aura_ms_stock
+    ports:
+      - "5435:5432"
+    volumes:
+      - stock_pgdata:/var/lib/postgresql/data
+    networks:
+      - aura_network
+
+  stock_flyway:
+    image: flyway/flyway:10.12.0
+    container_name: stock_flyway
+    depends_on:
+      - stock_db
+    command: [
+      "migrate",
+      "-url=jdbc:postgresql://stock_db:5432/aura_ms_stock",
+      "-user=postgres",
+      "-password=postgres"
+    ]
+    volumes:
+      - ./aura-ms-stock/src/main/resources/db/migration:/flyway/sql
+    networks:
+      - aura_network
+
+  # Payment Microservice
+  payment_db:
+    image: postgres:13
+    container_name: payment_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: aura_ms_payment
+    ports:
+      - "5436:5432"
+    volumes:
+      - payment_pgdata:/var/lib/postgresql/data
+    networks:
+      - aura_network
+
+  payment_flyway:
+    image: flyway/flyway:10.12.0
+    container_name: payment_flyway
+    depends_on:
+      - payment_db
+    command: [
+      "migrate",
+      "-url=jdbc:postgresql://payment_db:5432/aura_ms_payment",
+      "-user=postgres",
+      "-password=postgres"
+    ]
+    volumes:
+      - ./aura-ms-payment/src/main/resources/db/migration:/flyway/sql
+    networks:
+      - aura_network
+
+  # Localstack (único)
+  localstack:
+    container_name: localstack
+    image: localstack/localstack:latest
+    ports:
+      - "4566:4566"
+      - "4510-4559:4510-4559"
+    environment:
+      - SERVICES=sqs
+      - DEBUG=1
+      - DATA_DIR=/tmp/localstack/data
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "./scripts:/docker-entrypoint-initaws.d"
+    networks:
+      - aura_network
+
+  # Inicialização SQS
+  init-sqs:
+    image: amazon/aws-cli:latest
+    container_name: init-sqs
+    environment:
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+      - AWS_DEFAULT_REGION=us-east-1
+    entrypoint: /bin/sh -c
+    command: >
+      "
+        # Espera o LocalStack estar pronto
+        sleep 10
+      
+        # Cria fila SQS para pedidos
+        aws --endpoint-url=http://localstack:4566 sqs create-queue --queue-name new-order-queue
+      
+        # Lista as filas para confirmar
+        aws --endpoint-url=http://localstack:4566 sqs list-queues
+      "
+    depends_on:
+      - localstack
+    networks:
+      - aura_network
+
+networks:
+  aura_network:
+    driver: bridge
+
+volumes:
+  order_pgdata:
+  product_pgdata:
+  client_pgdata:
+  stock_pgdata:
+  payment_pgdata:

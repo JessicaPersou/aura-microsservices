@@ -1,0 +1,146 @@
+openapi: 3.0.3
+info:
+  title: API de Estoque
+  description: Documentação da API para gerenciamento de estoque.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8005
+    description: Servidor local
+
+paths:
+  /api/v1/stocks/new-reserve:
+    post:
+      summary: Criar uma nova reserva de estoque
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RequestStockReserveDTO'
+      responses:
+        '200':
+          description: Reserva criada com sucesso
+          content:
+            application/json:
+              schema:
+                type: boolean
+                example: true
+
+  /api/v1/stocks/return:
+    post:
+      summary: Retornar estoque reservado
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RequestStockReserveDTO'
+      responses:
+        '200':
+          description: Estoque retornado com sucesso
+          content:
+            application/json:
+              schema:
+                type: boolean
+                example: true
+
+  /api/v1/stocks/check-reserve:
+    get:
+      summary: Verificar reserva de estoque
+      parameters:
+        - name: skuProduct
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Verificação concluída
+          content:
+            application/json:
+              schema:
+                type: boolean
+                example: true
+
+  /api/v1/stocks/{id}:
+    delete:
+      summary: Deletar um estoque
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Estoque deletado com sucesso
+          content:
+            application/json:
+              schema:
+                type: boolean
+                example: true
+
+    put:
+      summary: Atualizar um estoque
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StockDTO'
+      responses:
+        '200':
+          description: Estoque atualizado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StockDTO'
+
+components:
+  schemas:
+    RequestStockReserveDTO:
+      type: object
+      properties:
+        skuProduct:
+          type: string
+          example: "ABC123"
+        quantity:
+          type: integer
+          example: 10
+
+    StockDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        skuProduct:
+          type: string
+          example: "ABC123"
+        nameProduct:
+          type: string
+          example: "Produto Exemplo"
+        quantity:
+          type: integer
+          example: 100
+        valueUnit:
+          type: number
+          format: double
+          example: 10.5
+        valueSale:
+          type: number
+          format: double
+          example: 12.0
+        totalValue:
+          type: number
+          format: double
+          example: 1200.0
+        status:
+          type: string
+          example: "DISPONIVEL"

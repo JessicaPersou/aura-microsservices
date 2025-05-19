@@ -1,0 +1,305 @@
+openapi: 3.0.3
+info:
+  title: AURA Client API
+  description: API do Microsserviço de Cliente para o Sistema de Gerenciamento de Pedidos
+  version: 1.0.0
+  contact:
+    name: Equipe Aura
+    email: equipe@aura.com.br
+servers:
+  - url: 'http://localhost:8004'
+    description: Servidor local
+tags:
+  - name: clients
+    description: Operações relacionadas ao cliente
+
+paths:
+  /api/v1/clients:
+    get:
+      summary: List all clients
+      operationId: listClients
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Client'
+    post:
+      summary: Create a new client
+      operationId: createClient
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientRequest'
+      responses:
+        '201':
+          description: Client created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+  /api/v1/clients/{clientId}:
+    get:
+      summary: Get a client by ID
+      operationId: getClientById
+      parameters:
+        - name: clientId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+    put:
+      summary: Update a client
+      operationId: updateClient
+      parameters:
+        - name: clientId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientRequest'
+      responses:
+        '200':
+          description: Client updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+    delete:
+      summary: Delete a client
+      operationId: deleteClient
+      parameters:
+        - name: clientId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: Client deleted successfully
+  /api/v1/clients/{clientId}/addresses:
+    get:
+      summary: List all addresses for a client
+      operationId: listClientAddresses
+      parameters:
+        - name: clientId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Address'
+    post:
+      summary: Add a new address to a client
+      operationId: addClientAddress
+      parameters:
+        - name: clientId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddressRequest'
+      responses:
+        '201':
+          description: Address created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Address'
+  /qpi/v1/clients/{clientId}/addresses/{addressId}:
+    get:
+      summary: Get a specific address
+      operationId: getClientAddress
+      parameters:
+        - name: clientId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: addressId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Address'
+    put:
+      summary: Update an address
+      operationId: updateClientAddress
+      parameters:
+        - name: clientId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: addressId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddressRequest'
+      responses:
+        '200':
+          description: Address updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Address'
+    delete:
+      summary: Delete an address
+      operationId: deleteClientAddress
+      parameters:
+        - name: clientId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: addressId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: Address deleted successfully
+components:
+  schemas:
+    AddressRequest:
+      type: object
+      properties:
+        street:
+          type: string
+        number:
+          type: string
+        zipcode:
+          type: string
+        neighborhood:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+      required:
+        - street
+        - number
+        - zipcode
+        - neighborhood
+        - city
+        - state
+    Address:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        street:
+          type: string
+        number:
+          type: string
+        zipcode:
+          type: string
+        neighborhood:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+      required:
+        - id
+        - street
+        - number
+        - zipcode
+        - neighborhood
+        - city
+        - state
+    ClientRequest:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        cpf:
+          type: string
+        birthDate:
+          type: string
+          format: date
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/AddressRequest'
+      required:
+        - firstName
+        - lastName
+        - cpf
+        - birthDate
+        - addresses
+    Client:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        firstName:
+          type: string
+        lastName:
+          type: string
+        cpf:
+          type: string
+        birthDate:
+          type: string
+          format: date
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Address'
