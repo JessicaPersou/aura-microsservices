@@ -1,0 +1,513 @@
+{
+	"info": {
+		"_postman_id": "c2368093-6368-4b71-92db-ba779ce0a8c8",
+		"name": "aura",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "19199790"
+	},
+	"item": [
+		{
+			"name": "client",
+			"item": [
+				{
+					"name": "create-client",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstName\": \"Lucas\",\r\n  \"lastName\": \"Novo\",\r\n  \"cpf\": \"20561076006\",\r\n  \"birthDate\": \"1990-01-01\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8004/api/v1/clients"
+					},
+					"response": []
+				},
+				{
+					"name": "create-address",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"street\": \"Rua das Flores\",\r\n    \"number\": \"123\",\r\n    \"zipcode\": \"01234-567\",\r\n    \"neighborhood\": \"Jardim Primavera\",\r\n    \"city\": \"São Paulo\",\r\n    \"state\": \"SP\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8004/api/v1/clients/1/addresses",
+						"description": "Generated from cURL: curl -X PUT \\\r\n  http://localhost:8080/clients/1 \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n    \"firstName\": \"John\",\r\n    \"lastName\": \"Doe\",\r\n    \"cpf\": \"80080933076\",\r\n    \"birthDate\": \"1980-01-01\",\r\n    \"addresses\": [\r\n      {\r\n        \"street\": \"Rua das Flores\",\r\n        \"number\": \"123\",\r\n        \"zipcode\": \"01234-567\",\r\n        \"neighborhood\": \"Jardim Primavera\",\r\n        \"city\": \"São Paulo\",\r\n        \"state\": \"SP\"\r\n      }\r\n    ]\r\n  }'"
+					},
+					"response": []
+				},
+				{
+					"name": "find-client-by-document",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8004/api/v1/clients/document/12087670030"
+					},
+					"response": []
+				},
+				{
+					"name": "find-client-by-id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8004/api/v1/clients/1"
+					},
+					"response": []
+				},
+				{
+					"name": "update-client",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstName\": \"Renata\",\r\n  \"lastName\": \"Martins Neves\",\r\n  \"birthDate\": \"1990-01-01\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8004/api/v1/clients/1"
+					},
+					"response": []
+				},
+				{
+					"name": "delete-client",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "localhost:8004/api/v1/clients/2"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "product",
+			"item": [
+				{
+					"name": "list-products",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8003/api/v1/products"
+					},
+					"response": []
+				},
+				{
+					"name": "create-product",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"Smartphone Galaxy S23\",\r\n    \"sku\": \"SAMS-GAL-S23-BLK\",\r\n    \"price\": 3999.99,\r\n    \"description\": \"Smartphone Samsung Galaxy S23 com 256GB de armazenamento, 8GB RAM, câmera tripla de 50MP e bateria de 4000mAh.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8003/api/v1/products"
+					},
+					"response": []
+				},
+				{
+					"name": "find-by-sku",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8003/api/v1/products/ULTP-15-SLV"
+					},
+					"response": []
+				},
+				{
+					"name": "Retorna Produtos Por SKU",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    \"SMGX20-BLK\",\r\n    \"ULTP-15-SLV\",\r\n    \"HDPHN-WL-BLK\",\r\n    \"TV55-4K-SMART\",\r\n    \"CAM-DSLR-PRO\",\r\n    \"TAB-10-PRO\",\r\n    \"GAME-NG-1TB\",\r\n    \"SWTCH-FIT-BLK\",\r\n    \"PRINT-MULT-CLR\",\r\n    \"DRONE-HD-PRO\"\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8003/api/v1/products/list/sku"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "stock",
+			"item": [
+				{
+					"name": "return-stock",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"sku\": \"SMGX20-BLK\",\n    \"quantity\": 5\n}"
+						},
+						"url": "http://localhost:8005/api/v1/stocks/return",
+						"description": "Returns previously reserved stock by increasing the available quantity"
+					},
+					"response": []
+				},
+				{
+					"name": "delete-stock",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8005/api/v1/stocks/1",
+						"description": "Deletes a stock entry by ID"
+					},
+					"response": []
+				},
+				{
+					"name": "update-stock",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"skuProduct\": \"SMGX20-BLK\",\n    \"nameProduct\": \"Smartphone Galaxy X20 Pro\",\n    \"quantity\": 45,\n    \"valueUnit\": 999.99,\n    \"valueSale\": 1099.99,\n    \"totalValue\": 49499.55,\n    \"status\": \"AVALIABLE\"\n}"
+						},
+						"url": "http://localhost:8005/api/v1/stocks/2",
+						"description": "Updates stock information by ID"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints related to stock operations"
+		},
+		{
+			"name": "order-receiver",
+			"item": [
+				{
+					"name": "new-order-receiver",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"clientId\": 1,\n    \"items\": [\n        {\n            \"sku\": \"SWTCH-FIT-BLK\",\n            \"quantity\": 1\n        }\n    ],\n    \"paymentData\": {\n        \"creditCardNumber\": \"1234-5678-9012-3456\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8001/orders",
+						"description": "Generated from cURL: curl -X POST http://localhost:8081/orders \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"clientId\": 1,\n    \"items\": [\n      {\n        \"sku\": \"SKU123\",\n        \"quantity\": 2\n      }\n    ],\n    \"paymentData\": {\n      \"creditCardNumber\": \"1234-5678-9012-3456\"\n    }\n  }'"
+					},
+					"response": [
+						{
+							"name": "new-order-gateway",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"clientId\": 1,\n    \"items\": [\n      {\n        \"sku\": \"SAMS-GAL-S23-BLK\",\n        \"quantity\": 1\n      }\n    ],\n    \"paymentData\": {\n      \"creditCardNumber\": \"4449-5678-9012-3456\"\n    }\n  }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8001/orders"
+							},
+							"status": "Accepted",
+							"code": 202,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 20 Apr 2025 21:54:50 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"messageId\": \"c828ff8d-3953-41a0-bcf6-b8f076696426\",\n    \"status\": \"ABERTO\"\n}"
+						}
+					]
+				},
+				{
+					"name": "endpoint-localstack",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Amz-Target",
+								"value": "AmazonSQS.SendMessage"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n    \"QueueUrl\": \"http://localhost:4566/000000000000/new-order-queue\",\r\n    \"MessageBody\": \"{\\\"clientId\\\": 1, \\\"items\\\": [{\\\"sku\\\": \\\"DRONE-HD-PRO\\\", \\\"quantity\\\": 1}], \\\"paymentData\\\": {\\\"creditCardNumber\\\": \\\"4444-5678-9012-3456\\\"}}\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:4566",
+						"description": "Generated from cURL: curl -X POST \\\r\n  -H \"Content-Type: application/json\" \\\r\n  -H \"X-Amz-Target: AmazonSQS.SendMessage\" \\\r\n  -d '{\r\n    \"QueueUrl\": \"http://localhost:4566/000000000000/new-order-queue\",\r\n    \"MessageBody\": \"{\\\"clientId\\\": 1, \\\"items\\\": [{\\\"sku\\\": \\\"SAMS-GAL-S23-BLK\\\", \\\"quantity\\\": 1}], \\\"paymentData\\\": {\\\"creditCardNumber\\\": \\\"1234-5678-9012-3456\\\"}}\"\r\n  }' \\\r\n  http://localhost:4566/"
+					},
+					"response": [
+						{
+							"name": "retorno-endpoint-localstack-json",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "X-Amz-Target",
+										"value": "AmazonSQS.SendMessage"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"QueueUrl\": \"http://localhost:4566/000000000000/new-order-queue\",\r\n    \"MessageBody\": \"{\\\"clientId\\\": 1, \\\"items\\\": [{\\\"sku\\\": \\\"SAMS-GAL-S23-BLK\\\", \\\"quantity\\\": 1}], \\\"paymentData\\\": {\\\"creditCardNumber\\\": \\\"1234-5678-9012-3456\\\"}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:4566"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "TwistedWeb/24.3.0"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 20 Apr 2025 20:23:17 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/x-amz-json-1.0"
+								},
+								{
+									"key": "Content-Length",
+									"value": "109"
+								},
+								{
+									"key": "x-amzn-requestid",
+									"value": "91ccc26a-674c-44ad-9838-e02997036d38"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"MessageId\": \"6e5cab36-e93e-4d49-9ae8-efc95abe937f\",\n    \"MD5OfMessageBody\": \"450b503d3c087213b1486f0754e097a9\"\n}"
+						}
+					]
+				},
+				{
+					"name": "new-order-receiver-array",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"clientId\": 1,\n    \"items\": [\n      {\n        \"sku\": \"SAMS-GAL-S23-BLK\",\n        \"quantity\": 1\n      }\n    ],\n    \"paymentData\": {\n      \"creditCardNumber\": \"4141-5678-9012-3456\"\n    }\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8001/orders"
+					},
+					"response": [
+						{
+							"name": "new-order-gateway",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"clientId\": 1,\n    \"items\": [\n      {\n        \"sku\": \"SAMS-GAL-S23-BLK\",\n        \"quantity\": 1\n      }\n    ],\n    \"paymentData\": {\n      \"creditCardNumber\": \"1234-5678-9012-3456\"\n    }\n  }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8001/orders"
+							},
+							"status": "Accepted",
+							"code": 202,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 20 Apr 2025 21:54:50 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"messageId\": \"c828ff8d-3953-41a0-bcf6-b8f076696426\",\n    \"status\": \"ABERTO\"\n}"
+						}
+					]
+				},
+				{
+					"name": "http://localhost:8001/orders",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"clientId\": 1,\n    \"items\": [\n      {\n            \"sku\": \"SMGX20-BLK\",\n            \"quantity\": 1\n        },\n        {\n            \"sku\": \"ULTP-15-SLV\",\n            \"quantity\": 1\n        }\n    ],\n    \"paymentData\": {\n      \"creditCardNumber\": \"4449-5678-9012-3456\"\n    }\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8001/orders"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "order",
+			"item": [
+				{
+					"name": "new-solicitation-order",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"clientId\": 1,\r\n    \"items\": [\r\n        {\r\n            \"sku\": \"HDD-EXT-2TB\",\r\n            \"quantity\": 1\r\n        }\r\n    ],\r\n    \"paymentData\": {\r\n        \"creditCardNumber\": \"5555-5678-9012-3456\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8002/api/v1/orders/new-solicitation"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
