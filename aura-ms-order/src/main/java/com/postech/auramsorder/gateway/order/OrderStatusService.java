@@ -3,14 +3,17 @@ package com.postech.auramsorder.gateway.order;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.postech.auramsorder.adapter.dto.OrderRequestDTO;
+import com.postech.auramsorder.config.DataSourceConfig;
 import com.postech.auramsorder.config.exception.OrderFailSerealizationItems;
 import com.postech.auramsorder.domain.Order;
 import com.postech.auramsorder.gateway.OrderRepository;
 import com.postech.auramsorder.gateway.database.jpa.entity.OrderEntity;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.sql.DataSource;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -19,11 +22,14 @@ public class OrderStatusService {
     private final OrderRepository orderRepository;
     private final ObjectMapper objectMapper;
     private final ModelMapper modelMapper;
+    private final DataSource dataSource;
 
-    public OrderStatusService(OrderRepository orderRepository, ObjectMapper objectMapper, ModelMapper modelMapper) {
+    public OrderStatusService(OrderRepository orderRepository, ObjectMapper objectMapper, ModelMapper modelMapper,
+                              @Qualifier("orderDataSource") DataSource dataSource) {
         this.orderRepository = orderRepository;
         this.objectMapper = objectMapper;
         this.modelMapper = modelMapper;
+        this.dataSource = dataSource;
     }
 
     @Transactional
