@@ -3,7 +3,6 @@ package com.postech.auramsorder.gateway.order;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.postech.auramsorder.adapter.dto.OrderRequestDTO;
-import com.postech.auramsorder.config.DataSourceConfig;
 import com.postech.auramsorder.config.exception.OrderFailSerealizationItems;
 import com.postech.auramsorder.domain.Order;
 import com.postech.auramsorder.gateway.OrderRepository;

@@ -1,8 +1,10 @@
 package com.postech.auramsproduct.domain;
 
-import java.math.BigDecimal;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
+import java.math.BigDecimal;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ProductTest {
 

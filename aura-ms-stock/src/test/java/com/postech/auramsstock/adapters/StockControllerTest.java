@@ -7,7 +7,6 @@ import com.postech.auramsstock.application.DeleteStockUseCase;
 import com.postech.auramsstock.application.FindStockUseCase;
 import com.postech.auramsstock.application.ReserveStockUseCase;
 import com.postech.auramsstock.application.UpdateStockUseCase;
-import com.postech.auramsstock.database.jpa.entity.StockEntity;
 import com.postech.auramsstock.domain.Stock;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,12 +18,10 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import java.util.List;
-import java.util.Optional;
-
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 class StockControllerTest {
 

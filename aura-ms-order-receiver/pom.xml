@@ -12,7 +12,9 @@
     <artifactId>aura-ms-order-receiver</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>aura-ms-order-receiver</name>
-    <description>Um componente que serve como porta de entrada única para um sistema, redirecionando as requisições para os serviços apropriados.</description>
+    <description>Um componente que serve como porta de entrada única para um sistema, redirecionando as requisições para
+        os serviços apropriados.
+    </description>
     <url/>
     <licenses>
         <license/>
@@ -94,6 +96,16 @@
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>

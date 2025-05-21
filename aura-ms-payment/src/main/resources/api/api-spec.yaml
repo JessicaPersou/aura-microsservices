@@ -109,7 +109,7 @@ components:
           description: Identificador único do pedido
         status:
           type: string
-          enum: [PENDING, COMPLETED, FAILED, REFUNDED]
+          enum: [ PENDING, COMPLETED, FAILED, REFUNDED ]
           description: Status do pagamento
         message:
           type: string

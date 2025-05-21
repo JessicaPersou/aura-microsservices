@@ -216,4 +216,5 @@ class AddressRepositoryImplTest {
         verify(clientJpaRepository).findById(clientId);
         verify(addressJpaRepository).findById(addressId);
         verifyNoMoreInteractions(addressJpaRepository);
-    }}
+    }
+}

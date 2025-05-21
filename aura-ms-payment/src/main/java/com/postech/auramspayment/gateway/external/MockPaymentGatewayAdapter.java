@@ -22,13 +22,9 @@ public class MockPaymentGatewayAdapter implements PaymentGatewayAdapter {
 
         if (payment.getCardNumber().startsWith("4")) {
             status = PaymentStatus.COMPLETED;
-        }
-
-        else if (payment.getCardNumber().startsWith("5")) {
+        } else if (payment.getCardNumber().startsWith("5")) {
             status = PaymentStatus.FAILED;
-        }
-
-        else {
+        } else {
             status = Math.random() > 0.3 ? PaymentStatus.COMPLETED : PaymentStatus.FAILED;
         }
 

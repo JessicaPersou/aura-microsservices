@@ -12,6 +12,14 @@ public class ClientService {
     @Value("${client.service.url}")
     private String clientServiceUrl;
 
+    public String getClientServiceUrl() {
+        return clientServiceUrl;
+    }
+
+    public void setClientServiceUrl(String clientServiceUrl) {
+        this.clientServiceUrl = clientServiceUrl;
+    }
+
     private final RestTemplate restTemplate;
 
     public ClientService(RestTemplate restTemplate) {
@@ -24,7 +32,7 @@ public class ClientService {
                     restTemplate.getForEntity(clientServiceUrl + clientId, ClientDTO.class);
             return response.getBody();
         } catch (Exception e) {
-            throw new ClientNotFoundException("Cliente nao encontradp: " + clientId);
+            throw new ClientNotFoundException("Cliente nao encontrado: " + clientId);
         }
     }
 }

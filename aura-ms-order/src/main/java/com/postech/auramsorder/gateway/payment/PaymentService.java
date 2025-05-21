@@ -1,7 +1,7 @@
 package com.postech.auramsorder.gateway.payment;
 
-import com.postech.auramsorder.domain.Order;
 import com.postech.auramsorder.adapter.dto.PaymentRequestDTO;
+import com.postech.auramsorder.domain.Order;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +21,14 @@ public class PaymentService {
 
     @Value("${payment.service.url}")
     private String paymentServiceUrl;
+
+    public String getPaymentServiceUrl() {
+        return paymentServiceUrl;
+    }
+
+    public void setPaymentServiceUrl(String paymentServiceUrl) {
+        this.paymentServiceUrl = paymentServiceUrl;
+    }
 
     public PaymentService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;

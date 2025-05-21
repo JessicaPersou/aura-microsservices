@@ -63,7 +63,7 @@ public class ProcessPaymentUseCase {
     }
 
     private void validateRequest(PaymentRequestDTO requestDTO) {
-        if (requestDTO.getOrderId() == null ) {
+        if (requestDTO.getOrderId() == null) {
             throw new IllegalArgumentException("ID do pedido não pode ser vazio");
         }
 

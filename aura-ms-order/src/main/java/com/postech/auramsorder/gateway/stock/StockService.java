@@ -16,26 +16,20 @@ public class StockService {
     @Value("${stock.service.url}")
     private String stockServiceUrl;
 
+    public String getStockServiceUrl() {
+        return stockServiceUrl;
+    }
+
+    public void setStockServiceUrl(String stockServiceUrl) {
+        this.stockServiceUrl = stockServiceUrl;
+    }
+
     private final RestTemplate restTemplate;
 
     public StockService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
-//    public boolean reserveStock(List<RequestStockReserveDTO> items) {
-//        for (RequestStockReserveDTO item : items) {
-//            try {
-//                ResponseEntity<Boolean> response =
-//                        restTemplate.postForEntity(stockServiceUrl + "/new-reserve", item, Boolean.class);
-//                if (!Boolean.TRUE.equals(response.getBody())) {
-//                    return false;
-//                }
-//            } catch (Exception e) {
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
 
     public boolean reserveStock(List<RequestStockReserveDTO> items) {
         try {

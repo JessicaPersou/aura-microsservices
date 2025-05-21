@@ -1,4 +1,5 @@
 package com.postech.auramspayment.gateway.database.jpa.entity;
+
 import com.postech.auramspayment.domain.enums.PaymentStatus;
 import jakarta.persistence.*;
 

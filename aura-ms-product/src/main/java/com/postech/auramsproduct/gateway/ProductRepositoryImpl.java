@@ -36,7 +36,7 @@ public class ProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
-    public List<ProductEntity> findAllProductsBySku(List<String> sku){
+    public List<ProductEntity> findAllProductsBySku(List<String> sku) {
         List<ProductEntity> productEntityList = productJpaRepository.findAllProductsBySkuIn(sku);
         return productEntityList;
     }
@@ -60,7 +60,7 @@ public class ProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
-    public boolean existsById(Long id){
+    public boolean existsById(Long id) {
         return productJpaRepository.existsById(id);
     }
 

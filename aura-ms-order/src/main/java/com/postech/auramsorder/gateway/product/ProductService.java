@@ -22,6 +22,14 @@ public class ProductService {
     @Value("${product.service.url}")
     private String productServiceUrl;
 
+    public String getProductServiceUrl() {
+        return productServiceUrl;
+    }
+
+    public void setProductServiceUrl(String productServiceUrl) {
+        this.productServiceUrl = productServiceUrl;
+    }
+
     private final RestTemplate restTemplate;
 
     public ProductService(RestTemplate restTemplate) {

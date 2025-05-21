@@ -1,4 +1,5 @@
 package com.postech.auramsclient.gateway.database.jpa.repository;
+
 import com.postech.auramsclient.gateway.database.jpa.entity.ClientEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,6 +26,7 @@ class ClientJpaRepositoryTest {
         clientEntity = new ClientEntity();
         clientEntity.setCpf(cpf);
     }
+
     @Test
     void shouldCheckIfClientExistsByCpf() {
         when(clientJpaRepository.existsByCpf(cpf)).thenReturn(true);
@@ -34,6 +36,7 @@ class ClientJpaRepositoryTest {
         assertTrue(result);
         verify(clientJpaRepository).existsByCpf(cpf);
     }
+
     @Test
     void shouldFindClientByCpf() {
         when(clientJpaRepository.findByCpf(cpf)).thenReturn(clientEntity);
@@ -43,6 +46,7 @@ class ClientJpaRepositoryTest {
         assertEquals(clientEntity, result);
         verify(clientJpaRepository).findByCpf(cpf);
     }
+
     @Test
     void shouldReturnFalseWhenClientDoesNotExistByCpf() {
         String nonExistentCpf = "12345678901";

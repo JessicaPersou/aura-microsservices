@@ -1,11 +1,12 @@
 package com.postech.auramsorder.gateway.database.jpa.entity;
 
 
+import com.vladmihalcea.hibernate.type.json.JsonType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
-import com.vladmihalcea.hibernate.type.json.JsonType;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -91,7 +92,11 @@ public class OrderEntity {
         this.paymentCardNumber = paymentCardNumber;
     }
 
-    public UUID getNumerOfOrder() { return numerOfOrder; }
+    public UUID getNumerOfOrder() {
+        return numerOfOrder;
+    }
 
-    public void setNumerOfOrder(UUID numerOfOrder) { this.numerOfOrder = numerOfOrder; }
+    public void setNumerOfOrder(UUID numerOfOrder) {
+        this.numerOfOrder = numerOfOrder;
+    }
 }

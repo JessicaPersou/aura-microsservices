@@ -1,7 +1,9 @@
 # AURA MS Client
 
-Este microsserviço é parte da arquitetura **AURA MS CLIENT**, fornecendo funcionalidades de gerenciamento de clientes e seus endereços.
-É uma aplicação Spring Boot projetada com uma abordagem de arquitetura limpa. Ela gerencia dados de clientes com validação e persistência em um banco de dados PostgreSQL.
+Este microsserviço é parte da arquitetura **AURA MS CLIENT**, fornecendo funcionalidades de gerenciamento de clientes e
+seus endereços.
+É uma aplicação Spring Boot projetada com uma abordagem de arquitetura limpa. Ela gerencia dados de clientes com
+validação e persistência em um banco de dados PostgreSQL.
 
 ## Stack Tecnológica
 

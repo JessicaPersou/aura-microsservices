@@ -9,7 +9,8 @@ public class Product {
     private BigDecimal price;
     private String description;
 
-    public Product(){}
+    public Product() {
+    }
 
     public Product(Long id, String name, String sku, BigDecimal price, String description) {
         this.id = id;

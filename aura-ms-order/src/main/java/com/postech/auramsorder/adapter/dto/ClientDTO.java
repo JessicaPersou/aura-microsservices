@@ -6,7 +6,8 @@ public class ClientDTO {
     private String lastName;
     private String cpf;
 
-    public ClientDTO(){}
+    public ClientDTO() {
+    }
 
     public ClientDTO(Long clientId, String firstName, String lastName, String cpf) {
         this.clientId = clientId;

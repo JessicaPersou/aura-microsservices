@@ -102,7 +102,7 @@ components:
           description: ID do pedido
         status:
           type: string
-          enum: ['FECHADO_COM_SUCESSO', 'FECHADO_SEM_CREDITO', 'FECHADO_SEM_ESTOQUE', 'ERRO']
+          enum: [ 'FECHADO_COM_SUCESSO', 'FECHADO_SEM_CREDITO', 'FECHADO_SEM_ESTOQUE', 'ERRO' ]
           example: 'PENDING'
           description: Status do pedido
         createdAt:

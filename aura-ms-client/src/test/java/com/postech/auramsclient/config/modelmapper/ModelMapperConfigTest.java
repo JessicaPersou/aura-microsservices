@@ -7,7 +7,8 @@ import com.postech.auramsclient.gateway.database.jpa.entity.ClientEntity;
 import org.junit.jupiter.api.Test;
 import org.modelmapper.ModelMapper;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class ModelMapperConfigTest {
 

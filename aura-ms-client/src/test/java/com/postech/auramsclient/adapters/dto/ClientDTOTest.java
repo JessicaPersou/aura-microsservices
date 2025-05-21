@@ -6,12 +6,12 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ClientDTOTest {
 
     @Test
-    public void testClientDTOConstructor() {
+    void testClientDTOConstructor() {
         Long clientId = 1L;
         String firstName = "João";
         String lastName = "Silva";

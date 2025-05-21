@@ -1,7 +1,9 @@
 # AURA MS Product
 
-Este microsserviço é parte da arquitetura **AURA MS PRODUCT**, fornecendo funcionalidades de gerenciamento de produtos e seus endereços.
-É uma aplicação Spring Boot projetada com uma abordagem de arquitetura limpa. Ela gerencia dados de produtos com validação e persistência em um banco de dados PostgreSQL.
+Este microsserviço é parte da arquitetura **AURA MS PRODUCT**, fornecendo funcionalidades de gerenciamento de produtos e
+seus endereços.
+É uma aplicação Spring Boot projetada com uma abordagem de arquitetura limpa. Ela gerencia dados de produtos com
+validação e persistência em um banco de dados PostgreSQL.
 
 ## Stack Tecnológica
 
